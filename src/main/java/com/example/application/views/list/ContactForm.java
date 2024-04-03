@@ -70,8 +70,11 @@ public class ContactForm extends FormLayout {
         cancel.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
 
         save.addClickListener(event -> validateAndSave());
+        delete.addClickListener(event -> fireEvent(new DeleteEvent(this, contact)));
+        cancel.addClickListener(event -> fireEvent(new CloseEvent(this)));
+
         save.addClickShortcut(Key.ENTER);
-        delete.addClickShortcut(Key.ESCAPE);
+        cancel.addClickShortcut(Key.ESCAPE);
 
         return new HorizontalLayout(save, delete, cancel);
     }
