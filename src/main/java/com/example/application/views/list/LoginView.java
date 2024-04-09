@@ -8,8 +8,9 @@ import com.vaadin.flow.router.BeforeEnterListener;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-@Route("Login")
-@PageTitle("Login | Athlete CRM")
+@Route("login")
+@PageTitle("login | Athlete CRM")
+//Anonymous allowed - think about it
 public class LoginView extends VerticalLayout implements BeforeEnterListener {
 
     private LoginForm login = new LoginForm();
@@ -30,9 +31,12 @@ public class LoginView extends VerticalLayout implements BeforeEnterListener {
     }
 
 
-//    @Override
-//    public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
-//        if(beforeEnterEvent.getLocation().equals()
+    @Override
+    public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
+        if(beforeEnterEvent.getLocation().getQueryParameters().
+                getParameters().containsKey("error")){
+            login.setError(true);
+        }
 
     }
 }
